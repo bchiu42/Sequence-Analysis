@@ -7,52 +7,27 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println("start");
         WriteFile ted = new WriteFile();
-        ted.generateGenome();
+//        ted.generateGenome();
 
         System.out.println("Hello World!");
-        String cars = "";
+        File bc = new File("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\Human.txt");
+        String cars = ted.txtToString(bc);
+System.out.println("start");
 
-        try {
-            System.out.println("point 1");
-            File file = new File("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\Human.txt");
-            Scanner sc = new Scanner(file);
-                  cars += sc.nextLine();
+        WriteFile d1 = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\posSite.txt", true);
+        WriteFile d2 = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\posSiteSequence.txt", true);
 
-        } catch (FileNotFoundException exception) {
-            System.out.println("We Failed part 1!");
-        }
-        try {
-            WriteFile data = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\Human.txt", true);
-            WriteFile data2 = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\posSiteSequence.txt", true);
-
-            ArrayList<String> posSiteSQ = new ArrayList<String>();
-            ArrayList<Integer> posSite = new ArrayList<Integer>();
-
-            char[] yeet = cars.toCharArray();
-            String[] fed = new String[yeet.length];
-            int k = 20;
-            for (int z = 0; z < yeet.length; z++) {
-                fed[z] = Character.toString(yeet[z]);
-            }
-            while (k < cars.length()-1) {
-                if (fed[k].equals("G")) {
-                    if (fed[k + 1].equals("G")) {
-                        posSiteSQ.add(cars.substring(k - 20, k + 2));
-                        posSite.add(k);
-                        String temp = Integer.toString(k);
-                        data.writeToFileN(temp);
-                        data2.writeToFileN(cars.substring(k - 20, k + 2));
-                    }
-                }
-                k++;
-            }
-        System.out.println("we made it?");
-        } catch (IOException exception) {
-            System.out.println("We Failed part 3!");
-
-        }
-
+        WriteFile data = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\posSite.txt", true);
+        WriteFile data2 = new WriteFile("C:\\Users\\xdobo\\IdeaProjects\\GEMS tester\\src\\posSiteSequence.txt", true);
+        //creates posSite and posSiteSQ
+        Sequence[] posSites = ted.PosSequences(cars, d1, d2);
+     System.out.println("end");
+//        Sequence[] GEMS = ted.uniqueSites(posSites);
+//    System.out.println("I need to sleep");
+//System.out.println(GEMS.length);
+//System.out.println(GEMS);
     }
 }
